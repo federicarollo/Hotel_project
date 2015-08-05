@@ -1,7 +1,10 @@
 package Hotel;
 
+
+
 import javax.swing.*;
 import javax.swing.event.*;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.awt.print.*;
@@ -11,11 +14,19 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 
 {
 
+	splash_frame splash = new splash_frame();
+
+	
     public Main() {
-        super("Title");     
+        super("Title"); 
+        splash();
         int inset = 0;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize((screenSize.width-100), (screenSize.height-100));
+        
+        //per disattivare il ridimensionamento della finestra e risolvere il problema dell'adattamento dell'immagine
+        setResizable(false); 
+
         
         setIconImage(getToolkit().getImage("Icon.jpg"));
 		
@@ -37,45 +48,47 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 
         setContentPane(desktop);
        	
-       	USERName.setFont (new Font ("Impact", Font.PLAIN, 16));
+       	USERName.setFont (new Font ("Pristina", Font.PLAIN, 40));
        	USERName.setForeground(Color.black);
-        USERName.setBounds(250,0,600,50);
+        USERName.setBounds(300,50,1000,50);
         desktop.add(USERName);
         
 //        add.setEnabled(false);
-        rooms.setEnabled(false);
+        rooms.setEnabled(true);
         restaurant.setEnabled(false);
         
         setJMenuBar(createMenuBar());
 		int paintx = (screenSize.width);
 		int painty = (screenSize.height);
 		
-		rooms.setBounds((paintx - 800)/2 , ((painty-100) - 500)/2,
-	 			200,100);
-		
-		restaurant.setBounds((paintx - 800)/2 , ((painty+150) - 500)/2,
-				200,100);
-		
+		rooms.setBounds((paintx/2)-200 , (painty/2)-150,
+	 		300,100);
+		//per combinare più stili insieme     f = new Font("Symbol", Font.BOLD+Font.ITALIC, 12);
+		rooms.setFont(new Font("Georgia", Font.BOLD ,35));
+		// per modificare il colore alla casella rooms.setBackground(Color.darkGray);
+		//per nascondere la casella, se voglio farla uscire soltanto dopo il login rooms.setVisible(false);
+		restaurant.setBounds((paintx/2)-200 , (painty/2),
+				300,100);
+		restaurant.setFont(new Font("Georgia", Font.CENTER_BASELINE ,35));
+
 		desktop.add(rooms);
 		desktop.add(restaurant);
 		
 		ImageIcon imageIcon = new ImageIcon("Sfondo.jpg");
-		Image image = imageIcon.getImage(); // transform it 
-		Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-		imageIcon = new ImageIcon(newimg);  // transform it back
-		//accLogo.setSize(1500, 1000);
+//		Image image = imageIcon.getImage(); // transform it 
+//		Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+//		imageIcon = new ImageIcon(newimg);  // transform it back
+	
 		
 	
 		
 		
         logo.setIcon( accLogo );
               
-      //  logo.sets
-		logo.setBounds( (paintx - 1000)/300 , ((painty-100) - 2000)/800,
-						3000,400);
+    	logo.setBounds( 0, 0, paintx, painty);
 		
 		desktop.add(logo);
-		desktop.setBackground(Color.gray);
+		//desktop.setBackground(Color.gray);
 		
 		
 		
@@ -120,14 +133,14 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
             
             }
         });
-                
+        */        
        menuItemhelp2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createSplash();
             
             }
         });
-        
+        /*
        menuItemhelp3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
          	aboutUs aboutus = new aboutUs();
@@ -516,7 +529,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
             frame3.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
     }
-    
+    */
     protected void createSplash() {
         splash.setVisible(true);
         desktop.add(splash);
@@ -524,7 +537,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
             splash.setSelected(true);
         } catch (java.beans.PropertyVetoException e) {}
     }
-
+/*
 	protected void createBookMaster() {
 		book_master master = new book_master();
         master.setVisible(true);
@@ -610,8 +623,8 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 //    	System.out.println(splash.getX());
         
     }
-/*    
-    private static void splash()
+    
+	private static void splash()
 	{
 		th.start(); // I sleep to let the thread startup and display the window
 			while (splash3.getWindow() == null || !splash3.getWindow().isShowing())
@@ -624,7 +637,6 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 			 
 	}
 	
-*/	
 	
     public void changeTheLookAndFeel( int value )
 	{
@@ -657,7 +669,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
     public static void main(String[] args) {
         Main frame = new Main();
         frame.setVisible(true);
-//        splash3.getWindow().dispose();
+        splash3.getWindow().dispose();
         
     }
 }
