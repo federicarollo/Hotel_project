@@ -1,24 +1,69 @@
 package Hotel;
 
-
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.awt.print.*;
 import java.io.*;
+import java.awt.AlphaComposite;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class Main extends JFrame implements Maininterface, InternalFrameListener
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-{
+import java.awt.image.BufferedImage;
 
+public class Main extends JFrame implements Maininterface, InternalFrameListener{
+	
+	
 	splash_frame splash = new splash_frame();
+	
+	/*try {
+		URL mapUrl = new URL("http://maps.googleapis.com/maps/api/staticmap?center=modena+fonte+d'abisso&zoom=17&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true");
+	
+		BufferedImage mapImage = ImageIO.read(mapUrl);
+	}
+	catch (IOException e) {
+		e.printStackTrace();
 
+	}*/
+	
 	
     public Main() {
+    	
         super("Title"); 
+        try {
+    		URL mapUrl = new URL("http://maps.googleapis.com/maps/api/staticmap?center=modena+fonte+d'abisso&zoom=17&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true");
+    	
+    		BufferedImage mapImage = ImageIO.read(mapUrl);
+    	}
+    	catch (IOException e) {
+    		e.printStackTrace();
+
+    	}
+        
         splash();
         int inset = 0;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -36,7 +81,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
                 System.exit(0);
             }
         });
-        
+               
 		
 		/*
 		//to enable the enter key
@@ -65,11 +110,12 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 	 		300,100);
 		//per combinare più stili insieme     f = new Font("Symbol", Font.BOLD+Font.ITALIC, 12);
 		rooms.setFont(new Font("Georgia", Font.BOLD ,35));
+		
 		// per modificare il colore alla casella rooms.setBackground(Color.darkGray);
 		//per nascondere la casella, se voglio farla uscire soltanto dopo il login rooms.setVisible(false);
-		restaurant.setBounds((paintx/2)-200 , (painty/2),
-				300,100);
-		restaurant.setFont(new Font("Georgia", Font.CENTER_BASELINE ,35));
+		restaurant.setBounds((paintx/2)-200 , (painty/2)-10,
+			300,100);
+		restaurant.setFont(new Font("Georgia", Font.BOLD ,35));
 
 		desktop.add(rooms);
 		desktop.add(restaurant);
@@ -88,11 +134,27 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
     	logo.setBounds( 0, 0, paintx, painty);
 		
 		desktop.add(logo);
+		
 		//desktop.setBackground(Color.gray);
 		
+		EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                /*try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                    ex.printStackTrace();
+                }*/
+
+              
+            }
+        });
+
 		
 		
     }
+    
+    
     
     public void getPassword()
 	{
@@ -113,15 +175,48 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 //        add.setMnemonic(KeyEvent.VK_L);
 //        rtn.setMnemonic(KeyEvent.VK_W);
 //        report.setMnemonic(KeyEvent.VK_R);
-//        help.setMnemonic(KeyEvent.VK_H);
+        help.setMnemonic(KeyEvent.VK_H);
         
         //items for help
-/*       menuItemhelp1.setAccelerator(KeyStroke.getKeyStroke(
+       menuItemhelp1.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_F1, ActionEvent.CTRL_MASK));
-                
+               
+       //da modificare per visualizzare l'immagine
        menuItemhelp1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, 
+            	JFrame frame = new JFrame();
+            	
+                JPanel panel = new JPanel();
+
+                panel.setLayout(new BorderLayout());
+                JLabel label = new JLabel();
+                label.setIcon(new ImageIcon("hotelMap.png"));
+                panel.add(label, BorderLayout.PAGE_START);
+                label.setHorizontalAlignment(SwingConstants.CENTER);
+
+                JTextArea textArea = new JTextArea(
+                        "\nVia fonte d'abisso, 14\n"
+                        + "Tel. 1111111111 Fax. 1111111111\n"
+                        + "email \n"
+                        + "4. Messaggio4'",
+                        6,
+                        50);
+               
+                Font font = new Font("Arial", Font.BOLD, 12);
+                textArea.setFont(font);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setOpaque(false);
+                textArea.setEditable(false);
+                textArea.setLocation(50, 200);
+                //modificare il layout del testo
+                panel.add(textArea, BorderLayout.PAGE_END);
+              //  panel.add(textArea);
+
+                // display the jpanel in a joptionpane dialog, using showMessageDialog
+                JOptionPane.showMessageDialog(frame, panel);
+            }});
+                /*JOptionPane.showMessageDialog(null, 
  				"\n1. To Add a record, fill in all the fields and click on Add." +
  				"\n\n2. To Update A Record, Search for the record first and click on Save." + 
  				"\n\n3. To Delete A Record, Search for the record and click Delete." + 
@@ -132,14 +227,14 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
  				"\n\n8. For More help Please Contact us at dh002211@ex.apiit.edu.my.");
             
             }
-        });
-        */        
-       menuItemhelp2.addActionListener(new ActionListener() {
+        });*/
+              
+       /*menuItemhelp2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createSplash();
             
             }
-        });
+        });*/
         /*
        menuItemhelp3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -185,8 +280,12 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
  				
  				menuItem6.setEnabled(false);
  				menuItem3.setEnabled(true);
+ 		
  				USERName.setText("Welcome to Anacleto hotel, please login to your account");
- 			}
+ 				
+
+ 				
+ 				}
                         
             }
         });
@@ -469,8 +568,8 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 //        reportItem2.setBackground(Color.gray);
         
         //add items for help
-//        help.add(menuItemhelp1);
-//        menuItemhelp1.setBackground(Color.gray);
+        help.add(menuItemhelp1);
+        menuItemhelp1.setBackground(Color.gray);
         //help.addSeparator();
 //        help.add(menuItemhelp2);
 //        menuItemhelp2.setBackground(Color.gray);
@@ -506,7 +605,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 //        menuBar.add(add);
 //        menuBar.add(report);
 //        menuBar.add(rtn);
-//        menuBar.add(help);
+        menuBar.add(help);
          
     }
     
@@ -666,8 +765,90 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 	}
 */	
     
+    public static class TestPane extends JPanel {
+
+        public static final long RUNNING_TIME = 2000;
+
+        private BufferedImage inImage;
+        private BufferedImage outImage;
+
+        private float alpha = 0f;
+        private long startTime = -1;
+
+        public TestPane() {
+            try {
+                inImage = ImageIO.read(new File("Sfondo.jpg"));
+                outImage = ImageIO.read(new File("Sfondo1.jpg"));
+            } catch (IOException exp) {
+                exp.printStackTrace();
+            }
+
+            final Timer timer = new Timer(40, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (startTime < 0) {
+                        startTime = System.currentTimeMillis();
+                    } else {
+
+                        long time = System.currentTimeMillis();
+                        long duration = time - startTime;
+                        if (duration >= RUNNING_TIME) {
+                            startTime = -1;
+                            ((Timer) e.getSource()).stop();
+                            alpha = 0f;
+                        } else {
+                            alpha = 1f - ((float) duration / (float) RUNNING_TIME);
+                        }
+                        repaint();
+                    }
+                }
+            });
+            addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    alpha = 0f;
+                    BufferedImage tmp = inImage;
+                    inImage = outImage;
+                    outImage = tmp;
+                    timer.start();
+                }
+
+            });
+        }
+
+        @Override
+        public Dimension getPreferredSize() {
+            return new Dimension(
+                            Math.max(inImage.getWidth(), outImage.getWidth()), 
+                            Math.max(inImage.getHeight(), outImage.getHeight()));
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.setComposite(AlphaComposite.SrcOver.derive(alpha));
+            int x = (getWidth() - inImage.getWidth()) / 2;
+            int y = (getHeight() - inImage.getHeight()) / 2;
+            g2d.drawImage(inImage, x, y, this);
+
+            g2d.setComposite(AlphaComposite.SrcOver.derive(1f - alpha));
+            x = (getWidth() - outImage.getWidth()) / 2;
+            y = (getHeight() - outImage.getHeight()) / 2;
+            g2d.drawImage(outImage, x, y, this);
+            g2d.dispose();
+        }
+
+    }
+
+    
     public static void main(String[] args) {
-        Main frame = new Main();
+    	Main frame = new Main();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new TestPane());
+        //frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         splash3.getWindow().dispose();
         

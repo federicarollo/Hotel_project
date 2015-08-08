@@ -9,7 +9,7 @@ public interface Maininterface
 {
 	public static Splash splash3 = new Splash("Starting App...");
 	public Thread th = new Thread(splash3);
-	public ImageIcon splPic = new ImageIcon("splash.jpg");
+	public ImageIcon splPic = new ImageIcon("DEVELOPED BY.jpg");
 	public JLabel l = new JLabel(splPic);
 	public JWindow splashWindow = new JWindow();
 	public Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,10 +22,10 @@ public interface Maininterface
  //   public JMenu add = new JMenu("Library"); 
  //   public JMenu rtn = new JMenu("Window"); 
  //   public JMenu report = new JMenu("Reports"); 
- //   public JMenu help = new JMenu("Help"); 
+    public JMenu help = new JMenu("Help"); 
     public JMenuBar menuBar = new JMenuBar();
-//    public JMenuItem menuItemhelp1 = new JMenuItem("Help Contents...", new ImageIcon("help.gif"));
-    public JMenuItem menuItemhelp2 = new JMenuItem("Splash screen...");
+    public JMenuItem menuItemhelp1 = new JMenuItem("Dove siamo...", new ImageIcon("help.gif"));
+//    public JMenuItem menuItemhelp2 = new JMenuItem("Splash screen...");
 //    public JMenuItem menuItemhelp3 = new JMenuItem("About us...", new ImageIcon("about.gif"));
     public JMenuItem menuItem3 = new JMenuItem("Login...", new ImageIcon("login.gif"));
     public JMenuItem menuItem6 = new JMenuItem("Logoff...", new ImageIcon("logout.gif"));
@@ -49,6 +49,7 @@ public interface Maininterface
     public Password app = new Password();
 //    public aboutUs aboutus = new aboutUs();
     public JLabel USERName = new JLabel("Welcome to Anacleto Hotel, please login to your account");
+    
     
 	public JLabel logo = new JLabel();
 	public Icon accLogo = new ImageIcon("Sfondo.jpg");
