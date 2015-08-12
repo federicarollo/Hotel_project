@@ -36,38 +36,17 @@ import javax.swing.JLabel;
 import java.awt.image.BufferedImage;
 
 public class Main extends JFrame implements Maininterface, InternalFrameListener{
-	
-	
+		
 	splash_frame splash = new splash_frame();
 	
-	/*try {
-		URL mapUrl = new URL("http://maps.googleapis.com/maps/api/staticmap?center=modena+fonte+d'abisso&zoom=17&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true");
-	
-		BufferedImage mapImage = ImageIO.read(mapUrl);
-	}
-	catch (IOException e) {
-		e.printStackTrace();
-
-	}*/
-	
-	
-    public Main() {
-    	
+	public Main() {
         super("Title"); 
-        try {
-    		URL mapUrl = new URL("http://maps.googleapis.com/maps/api/staticmap?center=modena+fonte+d'abisso&zoom=17&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true");
-    	
-    		BufferedImage mapImage = ImageIO.read(mapUrl);
-    	}
-    	catch (IOException e) {
-    		e.printStackTrace();
-
-    	}
-        
         splash();
         int inset = 0;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize((screenSize.width-100), (screenSize.height-100));
+        //System.out.println(screenSize.width-100);
+        //System.out.println(screenSize.height-100);
         
         //per disattivare il ridimensionamento della finestra e risolvere il problema dell'adattamento dell'immagine
         setResizable(false); 
@@ -93,9 +72,9 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 
         setContentPane(desktop);
        	
-       	USERName.setFont (new Font ("Pristina", Font.PLAIN, 40));
-       	USERName.setForeground(Color.black);
-        USERName.setBounds(300,50,1000,50);
+       	USERName.setFont (new Font ("Vivaldi", Font.BOLD, 90));
+       	USERName.setForeground(Color.getHSBColor(60, 100, 100));
+        USERName.setBounds(300,60,1000,90);
         desktop.add(USERName);
         
 //        add.setEnabled(false);
@@ -111,16 +90,19 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 		//per combinare più stili insieme     f = new Font("Symbol", Font.BOLD+Font.ITALIC, 12);
 		rooms.setFont(new Font("Georgia", Font.BOLD ,35));
 		
-		// per modificare il colore alla casella rooms.setBackground(Color.darkGray);
+		// per modificare il colore alla casella 
+		rooms.setBackground(Color.getHSBColor(240, 100, 100));
 		//per nascondere la casella, se voglio farla uscire soltanto dopo il login rooms.setVisible(false);
+		
 		restaurant.setBounds((paintx/2)-200 , (painty/2)-10,
 			300,100);
 		restaurant.setFont(new Font("Georgia", Font.BOLD ,35));
-
+		restaurant.setBackground(Color.getHSBColor(240, 100, 100));
+		
 		desktop.add(rooms);
 		desktop.add(restaurant);
 		
-		ImageIcon imageIcon = new ImageIcon("Sfondo.jpg");
+		ImageIcon imageIcon = new ImageIcon("g.gif");
 //		Image image = imageIcon.getImage(); // transform it 
 //		Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 //		imageIcon = new ImageIcon(newimg);  // transform it back
@@ -137,22 +119,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 		
 		//desktop.setBackground(Color.gray);
 		
-		EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                /*try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                    ex.printStackTrace();
-                }*/
-
-              
-            }
-        });
-
-		
-		
-    }
+	}
     
     
     
@@ -181,7 +148,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
        menuItemhelp1.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_F1, ActionEvent.CTRL_MASK));
                
-       //da modificare per visualizzare l'immagine
+       //da modificare per visualizzare la mappa
        menuItemhelp1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	JFrame frame = new JFrame();
@@ -195,14 +162,13 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
                 label.setHorizontalAlignment(SwingConstants.CENTER);
 
                 JTextArea textArea = new JTextArea(
-                        "\nVia fonte d'abisso, 14\n"
-                        + "Tel. 1111111111 Fax. 1111111111\n"
-                        + "email \n"
-                        + "4. Messaggio4'",
+                        "\nCi trovi in\n"
+                        + "via Fonte d'abisso, 14\n"
+                        + "Modena (MO) 41121 Italia\n",
                         6,
                         50);
                
-                Font font = new Font("Arial", Font.BOLD, 12);
+                Font font = new Font("Arial", Font.BOLD, 14);
                 textArea.setFont(font);
                 textArea.setLineWrap(true);
                 textArea.setWrapStyleWord(true);
@@ -214,7 +180,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
               //  panel.add(textArea);
 
                 // display the jpanel in a joptionpane dialog, using showMessageDialog
-                JOptionPane.showMessageDialog(frame, panel);
+                JOptionPane.showMessageDialog(frame, panel, "  Dove siamo", JOptionPane.CLOSED_OPTION);
             }});
                 /*JOptionPane.showMessageDialog(null, 
  				"\n1. To Add a record, fill in all the fields and click on Add." +
@@ -229,12 +195,16 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
             }
         });*/
               
-       /*menuItemhelp2.addActionListener(new ActionListener() {
+       menuItemhelp2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                createSplash();
+            	JOptionPane.showMessageDialog(null, 
+ 				" Per qualsiasi informazione contattaci al:    \n"+ 
+            	" Tel. 0592271693" +
+ 				"\n Fax. 0598475612" + 
+ 				"\n Email. federica.rollo@libero.it\n\n", "  Contattaci", JOptionPane.CLOSED_OPTION);
             
             }
-        });*/
+        });
         /*
        menuItemhelp3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -281,10 +251,8 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
  				menuItem6.setEnabled(false);
  				menuItem3.setEnabled(true);
  		
- 				USERName.setText("Welcome to Anacleto hotel, please login to your account");
- 				
-
- 				
+ 				USERName.setText("Hotel Belvedere");
+ 
  				}
                         
             }
@@ -538,13 +506,13 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
         //add items for menu
         
         menu.add(menuItem3);
-        menuItem3.setBackground(Color.gray);
+        menuItem3.setBackground(Color.getHSBColor(240, 100, 100));
         //menu.addSeparator();
         menu.add(menuItem6);
-        menuItem6.setBackground(Color.gray);
+        menuItem6.setBackground(Color.getHSBColor(240, 100, 100));
         menu.addSeparator();
         menu.add(menuItem5);
-        menuItem5.setBackground(Color.gray);
+        menuItem5.setBackground(Color.getHSBColor(240, 100, 100));
                        
         //add items for window
 //        rtn.add(returnItem1);
@@ -569,22 +537,22 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
         
         //add items for help
         help.add(menuItemhelp1);
-        menuItemhelp1.setBackground(Color.gray);
-        //help.addSeparator();
-//        help.add(menuItemhelp2);
-//        menuItemhelp2.setBackground(Color.gray);
+        menuItemhelp1.setBackground(Color.getHSBColor(240, 100, 100));
+        //help.addSeparator();		linea separatrice tra la prima riga e la seconda
+        help.add(menuItemhelp2);
+        menuItemhelp2.setBackground(Color.getHSBColor(240, 100, 100));
 //        help.addSeparator();
 //        help.add(menuItemhelp3);
 //        menuItemhelp3.setBackground(Color.gray);
         
         
 //        add.setEnabled(false);
-        menuBar.setBackground(Color.gray);
-        menu.setBackground(Color.gray);
+        menuBar.setBackground(Color.getHSBColor(240, 100, 100));
+        menu.setBackground(Color.getHSBColor(240, 100, 100));
 //        add.setBackground(Color.gray);
 //        report.setBackground(Color.gray);
 //        rtn.setBackground(Color.gray);
-//        help.setBackground(Color.gray);
+        help.setBackground(Color.getHSBColor(240, 100, 100));
         
 /*        for( int i = 0; i < radio.length; i++ ){
 				radio[i].setBackground(Color.gray);
@@ -751,7 +719,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 		}
 	}
     
-/*    	public class ItemHandler implements ItemListener
+/*   	public class ItemHandler implements ItemListener
 	{
 		public void itemStateChanged( ItemEvent e )
 		{
@@ -765,90 +733,12 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 	}
 */	
     
-    public static class TestPane extends JPanel {
-
-        public static final long RUNNING_TIME = 2000;
-
-        private BufferedImage inImage;
-        private BufferedImage outImage;
-
-        private float alpha = 0f;
-        private long startTime = -1;
-
-        public TestPane() {
-            try {
-                inImage = ImageIO.read(new File("Sfondo.jpg"));
-                outImage = ImageIO.read(new File("Sfondo1.jpg"));
-            } catch (IOException exp) {
-                exp.printStackTrace();
-            }
-
-            final Timer timer = new Timer(40, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (startTime < 0) {
-                        startTime = System.currentTimeMillis();
-                    } else {
-
-                        long time = System.currentTimeMillis();
-                        long duration = time - startTime;
-                        if (duration >= RUNNING_TIME) {
-                            startTime = -1;
-                            ((Timer) e.getSource()).stop();
-                            alpha = 0f;
-                        } else {
-                            alpha = 1f - ((float) duration / (float) RUNNING_TIME);
-                        }
-                        repaint();
-                    }
-                }
-            });
-            addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    alpha = 0f;
-                    BufferedImage tmp = inImage;
-                    inImage = outImage;
-                    outImage = tmp;
-                    timer.start();
-                }
-
-            });
-        }
-
-        @Override
-        public Dimension getPreferredSize() {
-            return new Dimension(
-                            Math.max(inImage.getWidth(), outImage.getWidth()), 
-                            Math.max(inImage.getHeight(), outImage.getHeight()));
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setComposite(AlphaComposite.SrcOver.derive(alpha));
-            int x = (getWidth() - inImage.getWidth()) / 2;
-            int y = (getHeight() - inImage.getHeight()) / 2;
-            g2d.drawImage(inImage, x, y, this);
-
-            g2d.setComposite(AlphaComposite.SrcOver.derive(1f - alpha));
-            x = (getWidth() - outImage.getWidth()) / 2;
-            y = (getHeight() - outImage.getHeight()) / 2;
-            g2d.drawImage(outImage, x, y, this);
-            g2d.dispose();
-        }
-
-    }
 
     
     public static void main(String[] args) {
     	Main frame = new Main();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new TestPane());
-        //frame.pack();
-        frame.setLocationRelativeTo(null);
+    	
+        frame.setLocationRelativeTo(null);		//posiziona la finestra al centro
         frame.setVisible(true);
         splash3.getWindow().dispose();
         

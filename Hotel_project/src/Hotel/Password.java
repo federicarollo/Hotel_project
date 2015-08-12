@@ -32,8 +32,8 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
        
  		int paintx = (screenSize.width);
 		int painty = (screenSize.height);
-		setBounds( (paintx - 300)/2 , ((painty-50) - 150)/2,
-						 300,150);
+		setBounds( (paintx/2)-200 , (painty/2)-150,
+						 300,220);
 				
 		c.setLayout( null );
 		
@@ -44,6 +44,13 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
         passwod.setBounds( 20,40,80,20 );
         passwod.setForeground(Color.black);
         c.add( passwod ); 
+        
+        registrazione.setBounds(20, 115, 180, 20);
+        registrazione.setForeground(Color.black);
+        c.add( registrazione );
+        
+        reg.setBounds(20, 135, 150, 25);
+        c.add( reg );
         
         usersName.setBounds( 100,15,170,20 );
         c.add( usersName );

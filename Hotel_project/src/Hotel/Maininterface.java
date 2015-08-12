@@ -24,7 +24,8 @@ public interface Maininterface
  //   public JMenu report = new JMenu("Reports"); 
     public JMenu help = new JMenu("Help"); 
     public JMenuBar menuBar = new JMenuBar();
-    public JMenuItem menuItemhelp1 = new JMenuItem("Dove siamo...", new ImageIcon("help.gif"));
+    public JMenuItem menuItemhelp1 = new JMenuItem("Dove siamo...", new ImageIcon("where.jpg"));
+    public JMenuItem menuItemhelp2 = new JMenuItem("Contattaci...", new ImageIcon("contatti.png"));
 //    public JMenuItem menuItemhelp2 = new JMenuItem("Splash screen...");
 //    public JMenuItem menuItemhelp3 = new JMenuItem("About us...", new ImageIcon("about.gif"));
     public JMenuItem menuItem3 = new JMenuItem("Login...", new ImageIcon("login.gif"));
@@ -48,11 +49,11 @@ public interface Maininterface
 //    public JMenuItem reportItem2 = new JMenuItem("Item Inventory...");
     public Password app = new Password();
 //    public aboutUs aboutus = new aboutUs();
-    public JLabel USERName = new JLabel("Welcome to Anacleto Hotel, please login to your account");
+    public JLabel USERName = new JLabel("Hotel Belvedere");
     
     
 	public JLabel logo = new JLabel();
-	public Icon accLogo = new ImageIcon("Sfondo.jpg");
+	public Icon accLogo = new ImageIcon("g.gif");
 	public String userName = "";
 //	public String strings[] = { "1. Metal", "2. Motif", "3. Windows" };
 	public UIManager.LookAndFeelInfo looks[] = UIManager.getInstalledLookAndFeels();

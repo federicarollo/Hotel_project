@@ -8,6 +8,8 @@ public interface PasswordInterface
 {
 	public JLabel user = new JLabel("User Name");
 	public JLabel passwod = new JLabel("Password");
+	public JLabel registrazione = new JLabel("Non hai un account?");
+	public JButton reg = new JButton("Registrati!");
 	public JTextField usersName = new JTextField(20);
 	public JPasswordField userPassword = new JPasswordField(20);
 	public JButton okButton = new JButton("Ok");
