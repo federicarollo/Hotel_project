@@ -198,7 +198,7 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
        menuItemhelp2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	JOptionPane.showMessageDialog(null, 
- 				" Per qualsiasi informazione contattaci al:    \n"+ 
+ 				" I nostri contatti:    \n"+ 
             	" Tel. 0592271693" +
  				"\n Fax. 0598475612" + 
  				"\n Email. federica.rollo@libero.it\n\n", "  Contattaci", JOptionPane.CLOSED_OPTION);

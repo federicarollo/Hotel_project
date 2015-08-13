@@ -1,6 +1,7 @@
 package Hotel;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.sql.*;
@@ -16,6 +17,18 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 	public int ctr = 0;
 	public CheckBoxHandler handler = new CheckBoxHandler();
 	public boolean rem;
+	public JFrame frame;
+
+	int day[] = new int[31];
+	
+	
+	String[] month = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+	
+	String[] year = {};
+	
+    public JComboBox dayCombo = new JComboBox();
+	public JComboBox monthCombo = new JComboBox(month);
+	public JComboBox yearCombo = new JComboBox();
 	
 	public Password() 
     {
@@ -69,7 +82,68 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
         chk.addItemListener(handler);
         c.add(chk);
         
+
         
+        reg.addActionListener(new ActionListener()
+        		{
+
+					public void actionPerformed(ActionEvent e) {
+						JFrame frame = new JFrame("Registrazione");
+						int paintx = (screenSize.width);
+						int painty = (screenSize.height);
+						frame.setBounds((paintx/2)-200 , (painty/2)-150,
+								 300,220);
+						
+						frame.setLayout( null );
+						
+						
+						
+					    userReg.setBounds( 20,15,80,20 );
+				        userReg.setForeground(Color.black);
+				        frame.add( userReg );
+				        
+				        passwodReg.setBounds( 20,40,80,20 );
+				        passwodReg.setForeground(Color.black);
+				        frame.add( passwodReg ); 
+				        
+				        confpasswod.setBounds(20, 65, 80, 20);
+				        confpasswod.setForeground(Color.black);
+				        frame.add(confpasswod);
+				        
+				        email.setBounds(20, 90, 80, 20);
+				        email.setForeground(Color.black);
+				        frame.add(email);
+				        
+				        usersNameReg.setBounds( 100,15,170,20 );
+				        frame.add( usersNameReg );
+				        
+				        userPasswordReg.setBounds( 100,40,170,20 );
+				        frame.add( userPasswordReg );
+				        
+				        userConfpasswod.setBounds( 100,65,170,20 );
+				        frame.add( userConfpasswod );
+				        
+				        userEmail.setBounds( 100,90,170,20 );
+				        frame.add( userEmail );
+				        
+				       	okButtonReg.setBounds( 115,115,70,25 );
+						frame.add( okButtonReg );
+				        
+				      
+				        
+						frame.setVisible(true);
+				        				       				
+					}
+				}
+       	
+        );
+        
+        okButtonReg.addActionListener( new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				
+			}}
+        );
         
         okButton.addActionListener( new ActionListener()
 		{
@@ -131,6 +205,8 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
  			}
  		});
  		dispose();
+ 		
+ 		
  		}
  		private class CheckBoxHandler implements ItemListener {
  		
