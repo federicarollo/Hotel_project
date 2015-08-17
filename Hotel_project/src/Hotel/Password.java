@@ -171,9 +171,10 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 							yearint[i]=anno;
 							anno++;
 						}
-						
+
 						for(j=0; j<i; j++)
 							yearCombo.addItem(yearint[j]);
+						
 						
 						/*Vector year = new Vector();
 						for(j=0; j<i; j++){
