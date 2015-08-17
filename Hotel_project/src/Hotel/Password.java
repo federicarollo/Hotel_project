@@ -18,17 +18,34 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 	public CheckBoxHandler handler = new CheckBoxHandler();
 	public boolean rem;
 	public JFrame frame;
-
-	int day[] = new int[31];
 	
+	/*int[] dayint = new int[31];
+	for(int i=0; i<31; i++){
+		dayint[i]=i+1;
+	}
+	
+	Vector day = new Vector();
+	for(int j=0; j<i; j++){
+		day.add(dayint[j]);
+	}
 	
 	String[] month = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
 	
-	String[] year = {};
+	int anno=1945;
+	int[] yearint = new int[53];
+	for(i=0; i<53; i++){
+		yearint[i]=anno;
+		anno++;
+	}
 	
-    public JComboBox dayCombo = new JComboBox();
+	Vector year = new Vector();
+	for(j=0; j<i; j++){
+		year.add(yearint[j]);
+	}
+	
+    public JComboBox dayCombo = new JComboBox(day);
 	public JComboBox monthCombo = new JComboBox(month);
-	public JComboBox yearCombo = new JComboBox();
+	public JComboBox yearCombo = new JComboBox(year);*/
 	
 	public Password() 
     {
@@ -81,7 +98,6 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
         chk.setBackground(Color.gray);
         chk.addItemListener(handler);
         c.add(chk);
-        
 
         
         reg.addActionListener(new ActionListener()
@@ -128,12 +144,66 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 				        
 				       	okButtonReg.setBounds( 115,115,70,25 );
 						frame.add( okButtonReg );
+						
+				        int i, j;
+						
+				        int[] dayint = new int[31];
+						for(i=0; i<31; i++){
+							dayint[i]=i+1;
+						}
+						
+						for(j=0; j<i; j++)
+							dayCombo.addItem(dayint[j]);
+						
+						/*Vector day = new Vector();
+						for(j=0; j<i; j++){
+							day.add(dayint[j]);
+						}*/
+						
+						String[] month = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+						
+						for(j=0; j<12; j++)
+							monthCombo.addItem(month[j]);
+						
+						int anno=1945;
+						int[] yearint = new int[53];
+						for(i=0; i<53 && anno<1998; i++){
+							yearint[i]=anno;
+							anno++;
+						}
+						
+						for(j=0; j<i; j++)
+							yearCombo.addItem(yearint[j]);
+						
+						/*Vector year = new Vector();
+						for(j=0; j<i; j++){
+							year.add(yearint[j]);
+						}*/
+						
+						dayCombo.setBounds(20, 135, 20, 20);
+				        dayCombo.setForeground(Color.black);
+				        dayCombo.setEditable(true);
+				        frame.add(dayCombo);
 				        
+				        monthCombo.setBounds(60, 135, 20, 20);
+				        monthCombo.setForeground(Color.black);
+				        monthCombo.setEditable(true);
+				        frame.add(monthCombo);
+				        
+				        yearCombo.setBounds(80, 135, 20, 20);
+				        yearCombo.setForeground(Color.black);
+				        yearCombo.setEditable(true);
+				        frame.add(yearCombo);
+						
+						
+						
 				      
 				        
 						frame.setVisible(true);
 				        				       				
+						
 					}
+					
 				}
        	
         );

@@ -24,6 +24,9 @@ public interface PasswordInterface
 	public JLabel email = new JLabel("Email");
 	public JLabel ddn = new JLabel("Data di nascita");
 	
+	public JComboBox<Integer> dayCombo = new JComboBox<>();
+	public JComboBox<String> monthCombo = new JComboBox<>();
+	public JComboBox<Integer> yearCombo = new JComboBox<>();
 
 	public JTextField usersNameReg = new JTextField(20);
 	public JPasswordField userPasswordReg = new JPasswordField(20);
