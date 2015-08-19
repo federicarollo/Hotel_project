@@ -62,4 +62,8 @@ public interface Maininterface
 //	public char mne[] ={ '1', '2', '3' };
 	public java.util.Date currentDate = new java.util.Date();
 	public SimpleDateFormat formatter = new SimpleDateFormat ("MMMM dd yyyy", Locale.getDefault());
+	
+     
+	
+	
 }

@@ -733,6 +733,8 @@ public class Main extends JFrame implements Maininterface, InternalFrameListener
 	}
 */	
     
+   
+    
 
     
     public static void main(String[] args) {
