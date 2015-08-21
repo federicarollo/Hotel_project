@@ -20,17 +20,19 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 	public CheckBoxHandler handler = new CheckBoxHandler();
 	public boolean rem;
 	public JFrame frameReg;
-	public JFrame frameRegRepaint;
-	private JLabel label;
-	private int selectedItemDay;
+	public JFrame frameRegRepaint = new JFrame("Registrazione");
+	//private JLabel label;
+	private int selectedItemDay=1;
 	private String selectedItemMonth;
-	private int selectedItemYear;
+	private int selectedItemYear=1945;
 	private int i, j;
 	
 	public JFrame Rooms;
 	private int k,h;
 	private int selectedItemAdulti;
 	private String selectedItemType;
+	String CurrentType;
+	JLabel result;
 	
 	public Password() 
     {
@@ -152,10 +154,10 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 						
 					    ActionListener selectionListenerDay = new SelectionListenerDay(); 
 					    dayCombo.addActionListener(selectionListenerDay);
-					    label = new JLabel();
+					  //  label = new JLabel();
 						
-					    label.setBounds(20, 195, 150, 20);
-					    frameReg.add(label);
+					  //  label.setBounds(20, 195, 150, 20);
+					 //   frameReg.add(label);
 					    
 						String[] month = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
 						
@@ -210,7 +212,7 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 						public void actionPerformed(ActionEvent e){
 							JComboBox cb = (JComboBox)e.getSource(); 
 					        int selectedItemDay = (int)cb.getSelectedItem();
-					        label.setText("Selezionato: " + selectedItemDay);
+					      //  label.setText("Selezionato: " + selectedItemDay);
 					        System.out.println(selectedItemDay);
 
 							}
@@ -221,7 +223,7 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 						public void actionPerformed(ActionEvent e){
 							JComboBox cb1 = (JComboBox)e.getSource(); 
 					        String selectedItemMonth = (String)cb1.getSelectedItem();
-					        label.setText("Selezionato: " + selectedItemMonth);
+					       // label.setText("Selezionato: " + selectedItemMonth);
 					        System.out.println(selectedItemMonth);
 							if(selectedItemMonth.equals("Aprile") || selectedItemMonth.equals("Giugno") || selectedItemMonth.equals("Settembre") || selectedItemMonth.equals("Novembre")){
 								frameReg.setVisible(false);
@@ -244,16 +246,25 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 								frameRegRepaint.add( okButtonReg );
 								frameRegRepaint.add(avviso);	
 																
-								int[] dayint = new int[30];
-								for(i=0; i<30; i++){
+								int[] dayint = new int[31];
+								
+								for(i=1; i<31; i++){
+									dayint[i]=i;
+								}
+																								
+								Vector<Integer> day = new Vector<Integer>();
+								for(j=0; j<i; j++){
+									day.add(dayint[j]);
+								}
+								/*for(i=0; i<30; i++){
 									dayint[i]=i+1;
 								}
 								
 								Vector day = new Vector();
 								for(j=0; j<i; j++){
 									day.add(dayint[j]);
-								}
-								
+								}*/
+																
 								JComboBox dayCombo = new JComboBox(day);
 							    
 								/*ActionListener selectionListenerDay = new SelectionListenerDay(); 
@@ -263,20 +274,43 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 						        dayCombo.setForeground(Color.black);
 						        frameRegRepaint.add(dayCombo);
 						        
-						        String[] month = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+						      //  String[] month = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
 								
-								JComboBox monthCombo = new JComboBox(month);
-								
-								/*ActionListener selectionListenerMonth = new SelectionListenerMonth(); 
-							    monthCombo.addActionListener(selectionListenerMonth);*/
-								
-								monthCombo.setBounds(220, 115, 80, 20);
-						        monthCombo.setForeground(Color.black);
-						        frameRegRepaint.add(monthCombo);
+						        if(selectedItemMonth.equals("Aprile")){
+						        	String[] month = {"Aprile", "Gennaio", "Febbraio", "Marzo", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+						        	JComboBox monthCombo = new JComboBox(month);
+									monthCombo.setBounds(220, 115, 80, 20);
+							        monthCombo.setForeground(Color.black);
+							        frameRegRepaint.add(monthCombo);
+						        }
+						        
+						        if(selectedItemMonth.equals("Giugno")){
+						        	String[] month = {"Giugno", "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+						        	JComboBox monthCombo = new JComboBox(month);
+									monthCombo.setBounds(220, 115, 80, 20);
+							        monthCombo.setForeground(Color.black);
+							        frameRegRepaint.add(monthCombo);
+						        }
+						        if(selectedItemMonth.equals("Settembre")){
+						        	String[] month = {"Settembre", "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Ottobre", "Novembre", "Dicembre"};
+						        	JComboBox monthCombo = new JComboBox(month);
+									monthCombo.setBounds(220, 115, 80, 20);
+							        monthCombo.setForeground(Color.black);
+							        frameRegRepaint.add(monthCombo);
+						        }
+						        if(selectedItemMonth.equals("Novembre")){
+						        	String[] month = {"Novembre", "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Dicembre"};
+						        	JComboBox monthCombo = new JComboBox(month);
+									monthCombo.setBounds(220, 115, 80, 20);
+							        monthCombo.setForeground(Color.black);
+							        frameRegRepaint.add(monthCombo);
+						        }
 							    
 								int anno=1945;
-								int[] yearint = new int[53];
-								for(i=0; i<53 && anno<1998; i++){
+								int[] yearint = new int[54];
+								
+								yearint[0]=selectedItemYear;
+								for(i=1; i<54 && anno<1998; i++){
 									yearint[i]=anno;
 									anno++;
 								}
@@ -285,6 +319,15 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 								for(j=0; j<i; j++){
 									year.add(yearint[j]);
 								}
+								/*for(i=0; i<53 && anno<1998; i++){
+									yearint[i]=anno;
+									anno++;
+								}
+
+								Vector year = new Vector();
+								for(j=0; j<i; j++){
+									year.add(yearint[j]);
+								}*/
 								
 								JComboBox yearCombo = new JComboBox(year);
 					        
@@ -323,15 +366,26 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 								frameRegRepaint.add( okButtonReg );
 								frameRegRepaint.add(avviso);	
 																
-								int[] dayint = new int[29];
-								for(i=0; i<29; i++){
-									dayint[i]=i+1;
+								int[] dayint = new int[30];
+								
+								dayint[0]=selectedItemDay;
+								for(i=1; i<30; i++){
+									dayint[i]=i;
 								}
 								
 								Vector day = new Vector();
 								for(j=0; j<i; j++){
 									day.add(dayint[j]);
 								}
+								
+								/*for(i=0; i<29; i++){
+									dayint[i]=i+1;
+								}
+								
+								Vector day = new Vector();
+								for(j=0; j<i; j++){
+									day.add(dayint[j]);
+								}*/
 								
 								JComboBox dayCombo = new JComboBox(day);
 								
@@ -354,8 +408,10 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 						        frameRegRepaint.add(monthCombo);
 							    
 								int anno=1945;
-								int[] yearint = new int[53];
-								for(i=0; i<53 && anno<1998; i++){
+								int[] yearint = new int[54];
+								
+								yearint[0]=selectedItemYear;
+								for(i=1; i<54 && anno<1998; i++){
 									yearint[i]=anno;
 									anno++;
 								}
@@ -365,16 +421,28 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 									year.add(yearint[j]);
 								}
 								
+								/*for(i=0; i<53 && anno<1998; i++){
+									yearint[i]=anno;
+									anno++;
+								}
+
+								Vector year = new Vector();
+								for(j=0; j<i; j++){
+									year.add(yearint[j]);
+								}*/
+								
 								JComboBox yearCombo = new JComboBox(year);
 								
-								/*ActionListener selectionListenerYear = new SelectionListenerYear(); 
-							    yearCombo.addActionListener(selectionListenerYear);*/
+								ActionListener selectionListenerYear = new SelectionListenerYear(); 
+							    yearCombo.addActionListener(selectionListenerYear);
 					        
 						        yearCombo.setBounds(300, 115, 60, 20);
 						        yearCombo.setForeground(Color.black);
 						        frameRegRepaint.add(yearCombo);
 						        
 						        frameRegRepaint.setVisible(true);
+						        frameRegRepaint.validate();
+						        c.validate();
 
 							}
 
@@ -384,8 +452,8 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 			        class SelectionListenerYear implements ActionListener {
 						public void actionPerformed(ActionEvent e){
 							JComboBox cb2 = (JComboBox)e.getSource(); 
-					        int selectedItemYear = (int)cb2.getSelectedItem();
-					        label.setText("Selezionato: " + selectedItemYear);
+					        selectedItemYear = (int)cb2.getSelectedItem();
+					       // label.setText("Selezionato: " + selectedItemYear);
 					        System.out.println(selectedItemYear);
 							if((selectedItemYear % 4)==1){
 								if(selectedItemMonth.equals("Febbraio")){
@@ -408,15 +476,25 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 									frameRegRepaint.add( okButtonReg );
 									frameRegRepaint.add(avviso);	
 																	
-									int[] dayint = new int[28];
-									for(i=0; i<28; i++){
-										dayint[i]=i+1;
+									int[] dayint = new int[29];
+									
+									dayint[0]=selectedItemDay;
+									for(i=1; i<29; i++){
+										dayint[i]=i;
 									}
 									
 									Vector day = new Vector();
 									for(j=0; j<i; j++){
 										day.add(dayint[j]);
 									}
+									/*for(i=0; i<28; i++){
+										dayint[i]=i+1;
+									}
+									
+									Vector day = new Vector();
+									for(j=0; j<i; j++){
+										day.add(dayint[j]);
+									}*/
 									
 									JComboBox dayCombo = new JComboBox(day);
 									
@@ -440,8 +518,10 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 							        
 								    
 									int anno=1945;
-									int[] yearint = new int[53];
-									for(i=0; i<53 && anno<1998; i++){
+									int[] yearint = new int[54];
+									
+									yearint[0]=selectedItemYear;
+									for(i=1; i<54 && anno<1998; i++){
 										yearint[i]=anno;
 										anno++;
 									}
@@ -450,6 +530,15 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 									for(j=0; j<i; j++){
 										year.add(yearint[j]);
 									}
+									/*for(i=0; i<53 && anno<1998; i++){
+										yearint[i]=anno;
+										anno++;
+									}
+
+									Vector year = new Vector();
+									for(j=0; j<i; j++){
+										year.add(yearint[j]);
+									}*/
 									
 									JComboBox yearCombo = new JComboBox(year);
 						        
@@ -483,8 +572,82 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 		        	//visualizzo una finestra d'errore
 		        	JOptionPane.showMessageDialog(null, "Error. Please retype password");
 		        }
+		        else
+			        //controllo campi obbligatori
+			        if((usersNameReg.getText()).isEmpty()){
+			        	JOptionPane.showMessageDialog(null, "Error. Username is empty");
+			        }
+			        else
+			        	
+			        if((userPasswordReg.getText()).isEmpty()){
+			        	JOptionPane.showMessageDialog(null, "Error. Password is empty");
+			        }
+			        else
+			        /*if((userConfpasswod.getText()).isEmpty()){
+			        	JOptionPane.showMessageDialog(null, "Error. Password is empty");
+			        }*/
+			        if((userEmail.getText()).isEmpty()){
+			        	JOptionPane.showMessageDialog(null, "Error. Email is empty");
+			        }
+			        
+			        else{
+			        String usnamereg = usersNameReg.getText();
+			        String uspasswd = userPasswordReg.getText();
+			       
+			        //costruisco la data nel formato gg/mm/aaaa
+		        	//String dayString = new String();
+					//String yearString = new String();
+					String month = new String();
+					//dayString = Integer.toString(selectedItemDay);
+					if(selectedItemMonth.equals("Gennaio")) month="01";
+					if(selectedItemMonth.equals("Febbraio")) month="02";
+					if(selectedItemMonth.equals("Marzo")) month="03";
+					if(selectedItemMonth.equals("Aprile")) month="04";
+					if(selectedItemMonth.equals("Maggio")) month="05";
+					if(selectedItemMonth.equals("Giugno")) month="06";
+					if(selectedItemMonth.equals("Luglio")) month="07";
+					if(selectedItemMonth.equals("Agosto")) month="08";
+					if(selectedItemMonth.equals("Settembre")) month="09";
+					if(selectedItemMonth.equals("Ottobre")) month="10";
+					if(selectedItemMonth.equals("Novembre")) month="11";
+					if(selectedItemMonth.equals("Dicembre")) month="12";
+					//String monthString=Integer.toString(monthint);
+					//yearString = Integer.toString(selectedItemYear);
+					String data = new String();
+//					System.out.println("Giorno selezionato: " + dayString);
+//					System.out.println("Mese selezionato: " + selectedItemMonth);
+//					System.out.println("Anno selezionato: " + yearString);
+					
+					data=Integer.toString(selectedItemDay).concat("/").concat(month).concat("/").concat(Integer.toString(selectedItemYear));
+					System.out.println("Data selezionata: " + data);
+			    	boolean checkedreg = false;
+			    	
+			        //inserisco i dati nel db e controllo che lo username non esista già
+			        RegistrazioneSQL regsql = new RegistrazioneSQL(usnamereg, uspasswd, checkedreg);
+			        checkedreg = regsql.check();
+			        
+			        if(checkedreg == false){
+			        	JOptionPane.showMessageDialog(null, "Existing username. Please retype username");
+			        	
+			        }
+			        else {
+			        	//JOptionPane.showMessageDialog(null, "OK");
+			        	
+			        	//inserisco i dati nel db
+			        	regsql.insert(usnamereg, uspasswd, userEmail.getText(), data);
+			        	//chiudi la finestra
+			        	frameReg.setVisible(false);
+			        	if(frameRegRepaint.isVisible()==true)	frameRegRepaint.setVisible(false);
+			        	//cancello il contenuto delle jtextfield
+			        	usersNameReg.setText("");
+			        	userPasswordReg.setText("");
+			        	userConfpasswod.setText("");
+			        	userEmail.setText("");
+			        }
+			        }
+			}
 		        
-			}}
+			}
         );
         
         okButton.addActionListener( new ActionListener()
@@ -518,7 +681,7 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 					private void roomsPressed() {
 						// TODO Auto-generated method stub
 					
-						Rooms = new JFrame("Rooms");						
+						JFrame Rooms = new JFrame("Rooms");						
 						int paintx = (screenSize.width);
 						int painty = (screenSize.height);
 						Rooms.setBounds((paintx/2)-200 , (painty/2)-150,
@@ -597,19 +760,38 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 				        yearPartenza.setForeground(Color.black);
 				        Rooms.add(yearPartenza);
 				        
+				        tipologiaCamera.setBounds(170, 150, 200, 20 );
+						Rooms.add(tipologiaCamera);
 				        
-				        String[] type = {"Singola", "Doppia", "Tripla", "Matrimoniale", "Suite"};
+						// JFrame frame = new JFrame("Combo Box Demo");
+						   // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						   // frame.setSize(200, 200);
+						    Rooms.setLayout(new BorderLayout());
+
+						    String[] comboBoxItems = {"Singola", "Doppia", "Tripla", "Matrimoniale", "Suite"};
+						    
+						    final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
+						    JComboBox comboBox = new JComboBox(model);
+						    Rooms.add(comboBox);
+
+
+						    Rooms.setVisible(true);
+				      
+				      /*  String[] type = {"Singola", "Doppia", "Tripla", "Matrimoniale", "Suite"};
 						
-						JComboBox typeCombo = new JComboBox(type);		
-						
-						
-						
+				        CurrentType=type[0];
 				        
+						JComboBox typeCombo = new JComboBox(type);	
+						
+
+					        
 				        class SelectionListenerType implements ActionListener {
 							public void actionPerformed(ActionEvent e){
 								JComboBox cbType = (JComboBox)e.getSource(); 
 						        String selectedItemType = (String)cbType.getSelectedItem();
-						        label.setText("Selezionato: " + selectedItemType);
+						        CurrentType=selectedItemType;
+						      //  reformat();
+						       // label.setText("Selezionato: " + selectedItemType);
 						       // System.out.println(selectedItemDay);
 
 								}
@@ -619,21 +801,8 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 				        ActionListener selectionListenerType = new SelectionListenerType(); 
 				        typeCombo.addActionListener(selectionListenerType);
 				        
-				        
-				        tipologiaCamera.setBounds(170, 150, 200, 20 );
-						Rooms.add(tipologiaCamera);
-				        
-				        nadulti.setBounds(170, 175, 200, 20 );
-						Rooms.add(nadulti);
-						    
-						nbambini.setBounds(170, 200, 200, 20 );
-						Rooms.add(nbambini );
-				        
-					    EmailRooms.setBounds(170, 225, 200, 20 );
-						Rooms.add(EmailRooms );
-						
-						
-						int h, k;
+				        */
+				        int h, k;
 						
 				        int nrAdulti [] = new int[15];
 						for(h=0; h<15; h++){
@@ -662,6 +831,20 @@ public class Password extends JInternalFrame implements PasswordInterface, Maini
 						ActionListener selectionListenerAdulti = new SelectionListenerAdulti();
 					    AdultiCombo.addActionListener(selectionListenerAdulti);
 						
+						
+						
+						
+				        nadulti.setBounds(170, 175, 200, 20 );
+						Rooms.add(nadulti);
+						    
+						nbambini.setBounds(170, 200, 200, 20 );
+						Rooms.add(nbambini );
+				        
+					    EmailRooms.setBounds(170, 225, 200, 20 );
+						Rooms.add(EmailRooms );
+						
+						
+						Rooms.setVisible(true);
 						
 				        
 				        
