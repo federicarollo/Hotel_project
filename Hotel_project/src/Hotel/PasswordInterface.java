@@ -18,20 +18,22 @@ public interface PasswordInterface
 	public JCheckBox chk = new JCheckBox("Remember Password");
 	
 	//interfaccia per la registrazione
-	public JLabel userReg = new JLabel("User Name");
-	public JLabel passwodReg = new JLabel("Password");
-	public JLabel confpasswod = new JLabel("Conferma password");
-	public JLabel email = new JLabel("Email");
-	public JLabel ddn = new JLabel("Data di nascita");
+	public JLabel userReg = new JLabel("Username*");
+	public JLabel passwodReg = new JLabel("Password*");
+	public JLabel confpasswod = new JLabel("Conferma password*");
+	public JLabel email = new JLabel("Email*");
 	
+	public JLabel birthday = new JLabel("Data di nascita");
 	public JComboBox<Integer> dayCombo = new JComboBox<>();
 	public JComboBox<String> monthCombo = new JComboBox<>();
 	public JComboBox<Integer> yearCombo = new JComboBox<>();
+	
+	public JLabel avviso = new JLabel("* i campi sono obbligatori");
 
 	public JTextField usersNameReg = new JTextField(20);
 	public JPasswordField userPasswordReg = new JPasswordField(20);
 	public JPasswordField userConfpasswod = new JPasswordField(20);
 	public JTextField userEmail = new JTextField(20);
-	public JButton okButtonReg = new JButton("Ok");
-	
+	public JButton okButtonReg = new JButton("OK");
+		
 }
